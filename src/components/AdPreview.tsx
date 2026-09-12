@@ -107,29 +107,44 @@ export const AdPreview: React.FC<AdPreviewProps> = ({
 
       <div className="preview-canvas-container">
         <div
-          className="canvas-stage"
+          className="canvas-stage-wrapper"
           style={{
-            transform: `scale(${effectiveScale})`,
-            transformOrigin: 'center center',
-            transition: 'transform 0.2s ease-out',
+            width: `${Math.round(layout.width * effectiveScale)}px`,
+            height: `${Math.round(layout.height * effectiveScale)}px`,
+            position: 'relative',
+            flexShrink: 0,
           }}
         >
-          {renderMode === 'dom' ? (
-            <DomRenderer
-              layout={layout}
-              spec={spec}
-              showSafeAreas={showSafeAreas}
-              showBoundingBoxes={showBoundingBoxes}
-            />
-          ) : (
-            <CanvasRenderer
-              layout={layout}
-              spec={spec}
-              selectedElementId={selectedElementId}
-              onSelectElement={onSelectElement}
-              showSafeAreas={showSafeAreas}
-            />
-          )}
+          <div
+            className="canvas-stage"
+            style={{
+              width: `${layout.width}px`,
+              height: `${layout.height}px`,
+              transform: `scale(${effectiveScale})`,
+              transformOrigin: 'top left',
+              transition: 'transform 0.2s ease-out',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+            }}
+          >
+            {renderMode === 'dom' ? (
+              <DomRenderer
+                layout={layout}
+                spec={spec}
+                showSafeAreas={showSafeAreas}
+                showBoundingBoxes={showBoundingBoxes}
+              />
+            ) : (
+              <CanvasRenderer
+                layout={layout}
+                spec={spec}
+                selectedElementId={selectedElementId}
+                onSelectElement={onSelectElement}
+                showSafeAreas={showSafeAreas}
+              />
+            )}
+          </div>
         </div>
       </div>
 

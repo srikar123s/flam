@@ -387,13 +387,23 @@ body {
 .preview-canvas-container {
   flex: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: center;
   padding: 16px;
   background-color: #05070a;
-  overflow: hidden;
+  overflow-x: auto;
+  overflow-y: auto;
   min-height: 380px;
   position: relative;
+}
+
+.canvas-stage-wrapper {
+  margin: 0 auto;
+  box-sizing: content-box;
+}
+
+.canvas-stage {
+  box-sizing: border-box;
 }
 
 .preview-footer-metrics {
