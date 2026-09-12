@@ -1,0 +1,24 @@
+# Node modules
+node_modules/
+
+# Production build
+dist/
+
+# Environment files
+.env
+.env.local
+
+# IDE & OS files
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+.vscode/
+.idea/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
