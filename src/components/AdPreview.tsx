@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { Eye, ShieldAlert, Box, ZoomIn, ZoomOut, CheckCircle2, AlertTriangle } from 'lucide-react';
+import { Eye, ShieldAlert, Box, ZoomIn, ZoomOut, CheckCircle2, AlertTriangle, Layers } from 'lucide-react';
 import { ResolvedLayout, AdSpec } from '../engine/types';
 import { DomRenderer } from '../rendering/DomRenderer';
+import { CanvasRenderer } from '../rendering/CanvasRenderer';
 
 interface AdPreviewProps {
   layout: ResolvedLayout;
@@ -9,6 +10,7 @@ interface AdPreviewProps {
 }
 
 export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
+  const [renderMode, setRenderMode] = useState<'dom' | 'canvas'>('dom');
   const [showSafeAreas, setShowSafeAreas] = useState(false);
   const [showBoundingBoxes, setShowBoundingBoxes] = useState(false);
   const [zoomScale, setZoomScale] = useState(1.0);
@@ -29,6 +31,25 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
         </div>
 
         <div className="toolbar-controls">
+          <div className="renderer-toggle">
+            <button
+              className={`toggle-btn ${renderMode === 'dom' ? 'active' : ''}`}
+              onClick={() => setRenderMode('dom')}
+              title="Render using DOM CSS elements"
+            >
+              <Layers size={14} />
+              <span>DOM</span>
+            </button>
+            <button
+              className={`toggle-btn ${renderMode === 'canvas' ? 'active' : ''}`}
+              onClick={() => setRenderMode('canvas')}
+              title="Render using HTML5 Canvas 2D"
+            >
+              <Layers size={14} />
+              <span>Canvas</span>
+            </button>
+          </div>
+
           <button
             className={`toggle-btn ${showSafeAreas ? 'active' : ''}`}
             onClick={() => setShowSafeAreas(!showSafeAreas)}
@@ -38,14 +59,16 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
             <span>Safe Areas</span>
           </button>
 
-          <button
-            className={`toggle-btn ${showBoundingBoxes ? 'active' : ''}`}
-            onClick={() => setShowBoundingBoxes(!showBoundingBoxes)}
-            title="Toggle Bounding Boxes"
-          >
-            <Box size={14} />
-            <span>Inspect Rects</span>
-          </button>
+          {renderMode === 'dom' && (
+            <button
+              className={`toggle-btn ${showBoundingBoxes ? 'active' : ''}`}
+              onClick={() => setShowBoundingBoxes(!showBoundingBoxes)}
+              title="Toggle Bounding Boxes"
+            >
+              <Box size={14} />
+              <span>Inspect Rects</span>
+            </button>
+          )}
 
           <div className="zoom-controls">
             <button className="zoom-btn" onClick={handleZoomOut} title="Zoom Out">
@@ -70,12 +93,20 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
             transition: 'transform 0.2s ease-out',
           }}
         >
-          <DomRenderer
-            layout={layout}
-            spec={spec}
-            showSafeAreas={showSafeAreas}
-            showBoundingBoxes={showBoundingBoxes}
-          />
+          {renderMode === 'dom' ? (
+            <DomRenderer
+              layout={layout}
+              spec={spec}
+              showSafeAreas={showSafeAreas}
+              showBoundingBoxes={showBoundingBoxes}
+            />
+          ) : (
+            <CanvasRenderer
+              layout={layout}
+              spec={spec}
+              showSafeAreas={showSafeAreas}
+            />
+          )}
         </div>
       </div>
 

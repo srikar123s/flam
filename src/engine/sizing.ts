@@ -23,35 +23,20 @@ export function calculateBaseFontSize(
   return Math.max(rawSize, surface.minTextSize);
 }
 
+import { measureTextReal } from './textMeasurement';
+
 /**
- * Estimates text element dimensions based on text length, font size, and max container width.
+ * Measures text element dimensions using HTML5 Canvas text measurement with line wrapping logic.
  */
 export function estimateTextDimensions(
   element: TextAdElement,
   fontSize: number,
   availableWidth: number
 ): { width: number; height: number; fontSize: number } {
-  // Average char width ratio (~0.58 for Inter/sans-serif fonts)
-  const avgCharWidthRatio = 0.58;
-  const charWidth = fontSize * avgCharWidthRatio;
-  const textLength = element.content.length;
-
-  const padding = 12;
-  const usableWidth = Math.max(60, availableWidth - padding);
-  const charsPerLine = Math.max(8, Math.floor(usableWidth / charWidth));
-
-  const lineCount = Math.ceil(textLength / charsPerLine);
-  const lineHeight = Math.round(fontSize * 1.3);
-
-  const estimatedWidth = Math.min(
-    availableWidth,
-    Math.max(80, Math.ceil(Math.min(textLength, charsPerLine) * charWidth + padding))
-  );
-  const estimatedHeight = lineCount * lineHeight + 8;
-
+  const measured = measureTextReal(element, fontSize, availableWidth);
   return {
-    width: estimatedWidth,
-    height: estimatedHeight,
+    width: measured.width,
+    height: measured.height,
     fontSize,
   };
 }

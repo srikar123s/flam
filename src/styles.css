@@ -180,6 +180,16 @@ body {
   border-color: rgba(255, 255, 255, 0.2);
 }
 
+.renderer-toggle {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 2px;
+}
+
 /* Surface Selector Bar */
 .surface-selector-bar {
   display: flex;
