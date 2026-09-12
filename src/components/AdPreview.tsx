@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { Eye, ShieldAlert, Box, ZoomIn, ZoomOut, CheckCircle2, AlertTriangle, Layers } from 'lucide-react';
 import { ResolvedLayout, AdSpec } from '../engine/types';
 import { DomRenderer } from '../rendering/DomRenderer';
@@ -7,16 +7,37 @@ import { CanvasRenderer } from '../rendering/CanvasRenderer';
 interface AdPreviewProps {
   layout: ResolvedLayout;
   spec: AdSpec;
+  selectedElementId?: string | null;
+  onSelectElement?: (id: string) => void;
 }
 
-export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
-  const [renderMode, setRenderMode] = useState<'dom' | 'canvas'>('dom');
+export const AdPreview: React.FC<AdPreviewProps> = ({
+  layout,
+  spec,
+  selectedElementId,
+  onSelectElement,
+}) => {
+  const [renderMode, setRenderMode] = useState<'dom' | 'canvas'>('canvas');
   const [showSafeAreas, setShowSafeAreas] = useState(false);
   const [showBoundingBoxes, setShowBoundingBoxes] = useState(false);
   const [zoomScale, setZoomScale] = useState(1.0);
 
-  const handleZoomIn = () => setZoomScale((prev) => Math.min(2.0, prev + 0.15));
-  const handleZoomOut = () => setZoomScale((prev) => Math.max(0.4, prev - 0.15));
+  // Compute auto-fit scale for large surfaces (e.g. 1280x720 or 1080x1080) so they fit at 100% browser zoom
+  const autoFitScale = useMemo(() => {
+    const maxAvailableWidth = 720; // Available central column width at 100% zoom
+    const maxAvailableHeight = 440;
+
+    const scaleW = maxAvailableWidth / layout.width;
+    const scaleH = maxAvailableHeight / layout.height;
+    const fit = Math.min(1.0, scaleW, scaleH);
+
+    return Number(fit.toFixed(2));
+  }, [layout.width, layout.height]);
+
+  const effectiveScale = zoomScale * autoFitScale;
+
+  const handleZoomIn = () => setZoomScale((prev) => Math.min(2.5, prev + 0.15));
+  const handleZoomOut = () => setZoomScale((prev) => Math.max(0.3, prev - 0.15));
   const handleResetZoom = () => setZoomScale(1.0);
 
   return (
@@ -33,20 +54,20 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
         <div className="toolbar-controls">
           <div className="renderer-toggle">
             <button
-              className={`toggle-btn ${renderMode === 'dom' ? 'active' : ''}`}
-              onClick={() => setRenderMode('dom')}
-              title="Render using DOM CSS elements"
-            >
-              <Layers size={14} />
-              <span>DOM</span>
-            </button>
-            <button
               className={`toggle-btn ${renderMode === 'canvas' ? 'active' : ''}`}
               onClick={() => setRenderMode('canvas')}
               title="Render using HTML5 Canvas 2D"
             >
               <Layers size={14} />
               <span>Canvas</span>
+            </button>
+            <button
+              className={`toggle-btn ${renderMode === 'dom' ? 'active' : ''}`}
+              onClick={() => setRenderMode('dom')}
+              title="Render using DOM CSS elements"
+            >
+              <Layers size={14} />
+              <span>DOM</span>
             </button>
           </div>
 
@@ -75,7 +96,7 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
               <ZoomOut size={14} />
             </button>
             <span className="zoom-level" onClick={handleResetZoom}>
-              {Math.round(zoomScale * 100)}%
+              {Math.round(effectiveScale * 100)}%
             </span>
             <button className="zoom-btn" onClick={handleZoomIn} title="Zoom In">
               <ZoomIn size={14} />
@@ -88,7 +109,7 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
         <div
           className="canvas-stage"
           style={{
-            transform: `scale(${zoomScale})`,
+            transform: `scale(${effectiveScale})`,
             transformOrigin: 'center center',
             transition: 'transform 0.2s ease-out',
           }}
@@ -104,6 +125,8 @@ export const AdPreview: React.FC<AdPreviewProps> = ({ layout, spec }) => {
             <CanvasRenderer
               layout={layout}
               spec={spec}
+              selectedElementId={selectedElementId}
+              onSelectElement={onSelectElement}
               showSafeAreas={showSafeAreas}
             />
           )}

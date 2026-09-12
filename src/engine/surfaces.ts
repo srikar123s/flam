@@ -1,5 +1,65 @@
 import { SurfaceProfile } from './types';
 
+export const YOUTUBE_THUMBNAIL: SurfaceProfile = {
+  id: 'youtube-thumbnail',
+  name: 'YouTube Thumbnail',
+  width: 1280,
+  height: 720,
+  safeArea: { top: 30, right: 40, bottom: 30, left: 40 },
+  minTapTarget: 44,
+  minTextSize: 18,
+  viewingDistance: 'medium',
+  touchOnly: false,
+};
+
+export const INSTAGRAM_SQUARE: SurfaceProfile = {
+  id: 'instagram-square',
+  name: 'Instagram Square',
+  width: 1080,
+  height: 1080,
+  safeArea: { top: 40, right: 40, bottom: 40, left: 40 },
+  minTapTarget: 48,
+  minTextSize: 18,
+  viewingDistance: 'near',
+  touchOnly: true,
+};
+
+export const INSTAGRAM_STORY: SurfaceProfile = {
+  id: 'instagram-story',
+  name: 'Instagram Story',
+  width: 1080,
+  height: 1920,
+  safeArea: { top: 120, right: 40, bottom: 160, left: 40 },
+  minTapTarget: 52,
+  minTextSize: 20,
+  viewingDistance: 'near',
+  touchOnly: true,
+};
+
+export const MOBILE_BANNER: SurfaceProfile = {
+  id: 'mobile-banner',
+  name: 'Mobile Banner',
+  width: 320,
+  height: 50,
+  safeArea: { top: 4, right: 10, bottom: 4, left: 10 },
+  minTapTarget: 36,
+  minTextSize: 11,
+  viewingDistance: 'near',
+  touchOnly: true,
+};
+
+export const DESKTOP_BANNER: SurfaceProfile = {
+  id: 'desktop-banner',
+  name: 'Desktop Banner',
+  width: 728,
+  height: 90,
+  safeArea: { top: 8, right: 20, bottom: 8, left: 20 },
+  minTapTarget: 40,
+  minTextSize: 14,
+  viewingDistance: 'medium',
+  touchOnly: false,
+};
+
 export const MOBILE_PORTRAIT: SurfaceProfile = {
   id: 'mobile-portrait',
   name: 'Mobile Portrait',
@@ -30,8 +90,8 @@ export const BROADCAST_LOWER_THIRD: SurfaceProfile = {
   width: 1920,
   height: 250,
   safeArea: { top: 20, right: 60, bottom: 20, left: 60 },
-  minTapTarget: 0, // TV broadcast non-touch display
-  minTextSize: 22, // Viewed from 8+ feet
+  minTapTarget: 0,
+  minTextSize: 22,
   viewingDistance: 'far',
   touchOnly: false,
 };
@@ -42,7 +102,7 @@ export const SQUARE_KIOSK: SurfaceProfile = {
   width: 1080,
   height: 1080,
   safeArea: { top: 40, right: 40, bottom: 40, left: 40 },
-  minTapTarget: 60, // Kiosk touch target larger for standing users
+  minTapTarget: 60,
   minTextSize: 18,
   viewingDistance: 'medium',
   touchOnly: true,
@@ -61,6 +121,11 @@ export const TINY_MOBILE: SurfaceProfile = {
 };
 
 export const PRESET_SURFACES: SurfaceProfile[] = [
+  YOUTUBE_THUMBNAIL,
+  INSTAGRAM_SQUARE,
+  INSTAGRAM_STORY,
+  MOBILE_BANNER,
+  DESKTOP_BANNER,
   MOBILE_PORTRAIT,
   MOBILE_LANDSCAPE,
   BROADCAST_LOWER_THIRD,

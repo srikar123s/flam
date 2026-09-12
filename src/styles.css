@@ -389,10 +389,10 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
+  padding: 16px;
   background-color: #05070a;
-  overflow: auto;
-  min-height: 400px;
+  overflow: hidden;
+  min-height: 380px;
   position: relative;
 }
 
@@ -885,3 +885,705 @@ body {
   color: var(--text-muted);
   gap: 12px;
 }
+
+/* Frameshift Header Styling */
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.frameshift-brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.frameshift-symbol {
+  color: var(--accent-primary);
+  font-size: 14px;
+}
+
+.frameshift-name {
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  color: var(--text-primary);
+}
+
+.creative-select-badge {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.creative-select-badge select {
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--border-color);
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-family: inherit;
+  outline: none;
+}
+
+.header-middle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.surface-dropdown-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.target-surface-lbl {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+}
+
+.dropdown-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-wrapper select {
+  appearance: none;
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+  border: 1px solid var(--accent-primary);
+  padding: 6px 32px 6px 12px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.dropdown-arrow {
+  position: absolute;
+  right: 10px;
+  pointer-events: none;
+  color: var(--accent-primary);
+}
+
+.surface-meta-sub {
+  font-size: 11px;
+  font-family: var(--font-mono);
+  color: var(--text-muted);
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.reset-demo-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-color);
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.reset-demo-btn:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--text-primary);
+}
+
+.adapt-layouts-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%);
+  color: #ffffff;
+  border: none;
+  padding: 7px 16px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+  transition: all 0.2s;
+}
+
+.adapt-layouts-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.45);
+}
+
+/* Three Column Workspace Layout (Guaranteed side-by-side at 100% zoom) */
+.workspace-three-column {
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  flex: 1;
+  width: 100%;
+  max-width: 100vw;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
+/* Left Elements Sidebar */
+.elements-sidebar {
+  width: 165px;
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-panel);
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.elements-sidebar .sidebar-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  margin-bottom: 10px;
+}
+
+.title-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.elements-sidebar .subtitle {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.elements-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.element-item-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border-color);
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-size: 11px;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.element-item-btn:hover {
+  background-color: var(--bg-card-hover);
+  color: var(--text-primary);
+}
+
+.element-item-btn.active {
+  background-color: rgba(99, 102, 241, 0.15);
+  border-color: var(--accent-primary);
+  color: var(--text-primary);
+}
+
+.btn-left {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  overflow: hidden;
+}
+
+.type-icon {
+  color: var(--text-muted);
+}
+
+.el-name {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.priority-pill {
+  font-size: 8px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+.priority-pill.p-1 {
+  background-color: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+}
+
+.priority-pill.p-2 {
+  background-color: rgba(56, 189, 248, 0.2);
+  color: #7dd3fc;
+}
+
+.priority-pill.p-3 {
+  background-color: rgba(148, 163, 184, 0.2);
+  color: #cbd5e1;
+}
+
+.sidebar-footer {
+  margin-top: 10px;
+}
+
+.add-text-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px dashed var(--border-color);
+  color: var(--text-secondary);
+  padding: 6px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.add-text-btn:hover {
+  background-color: rgba(99, 102, 241, 0.1);
+  border-color: var(--accent-primary);
+  color: var(--accent-primary);
+}
+
+/* Center Stage */
+.center-stage {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  overflow: hidden;
+}
+/* =========================================================
+   THREE COLUMN WORKSPACE
+   ========================================================= */
+
+.workspace-three-column {
+  display: grid;
+
+  /* Left sidebar | Canvas | Right properties */
+  grid-template-columns: 180px minmax(0, 1fr) 310px;
+
+  width: 100%;
+  height: 100%;
+
+  min-width: 0;
+  min-height: 0;
+
+  gap: 10px;
+
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+
+/* =========================================================
+   LEFT ELEMENTS SIDEBAR
+   ========================================================= */
+
+.elements-sidebar {
+  width: 180px;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   CENTER CANVAS / PREVIEW
+   ========================================================= */
+
+.canvas-area {
+  width: 100%;
+  min-width: 0;
+  min-height: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   RIGHT PROPERTIES SIDEBAR
+   ========================================================= */
+
+.properties-sidebar {
+  width: 310px;
+  min-width: 310px;
+  max-width: 310px;
+
+  flex: 0 0 310px;
+
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--bg-panel);
+
+  border: 1px solid var(--border-color);
+  border-radius: 12px;
+
+  padding: 12px;
+
+  box-sizing: border-box;
+
+  /* Keep content inside the sidebar */
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+
+/* Empty properties state */
+
+.properties-sidebar.empty-props {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+
+/* =========================================================
+   PROPERTIES HEADER
+   ========================================================= */
+
+.props-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+
+  border-bottom: 1px solid var(--border-color);
+
+  flex-shrink: 0;
+}
+
+.props-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.props-tag {
+  font-size: 9px;
+  font-family: var(--font-mono);
+  font-weight: 700;
+
+  padding: 2px 6px;
+
+  border-radius: 4px;
+}
+
+
+/* =========================================================
+   ELEMENT TITLE
+   ========================================================= */
+
+.element-display-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--text-primary);
+
+  margin-bottom: 12px;
+
+  /* Prevent long names from pushing the panel */
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+
+/* =========================================================
+   PROPERTIES BODY
+   ========================================================= */
+
+.props-body {
+  display: flex;
+  flex-direction: column;
+
+  gap: 12px;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   PROPERTY GROUP
+   ========================================================= */
+
+.prop-group {
+  display: flex;
+  flex-direction: column;
+
+  gap: 3px;
+
+  min-width: 0;
+}
+
+.prop-group label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+
+/* =========================================================
+   INPUTS / SELECT / TEXTAREA
+   ========================================================= */
+
+.prop-group input,
+.prop-group select,
+.prop-group textarea {
+  width: 100%;
+  max-width: 100%;
+
+  background-color: var(--bg-card);
+  color: var(--text-primary);
+
+  border: 1px solid var(--border-color);
+  border-radius: 3px;
+
+  padding: 6px;
+
+  font-size: 12px;
+  font-family: inherit;
+
+  outline: none;
+
+  box-sizing: border-box;
+
+  transition: border-color 0.2s;
+}
+
+.prop-group textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+.prop-group input:focus,
+.prop-group select:focus,
+.prop-group textarea:focus {
+  border-color: var(--accent-primary);
+}
+
+
+/* =========================================================
+   TWO COLUMN PROPERTY ROW
+   ========================================================= */
+
+.prop-row {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+
+  gap: 10px;
+
+  min-width: 0;
+}
+
+
+/* =========================================================
+   SECTION DIVIDER
+   ========================================================= */
+
+.section-divider {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+
+  color: var(--text-muted);
+
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+
+/* =========================================================
+   DELETE BUTTON
+   ========================================================= */
+
+.delete-action-container {
+  margin-top: 14px;
+  padding-top: 12px;
+
+  border-top: 1px solid var(--border-color);
+}
+
+.delete-el-btn {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 6px;
+
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--accent-danger);
+
+  border: 1px solid rgba(239, 68, 68, 0.3);
+
+  padding: 8px;
+
+  border-radius: 6px;
+
+  font-size: 12px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  box-sizing: border-box;
+
+  transition: all 0.2s;
+}
+
+.delete-el-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: var(--accent-danger);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.muted-icon {
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.empty-txt {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+
+/* =========================================================
+   IMPORTANT: PREVENT FLEX/GRID CHILDREN FROM OVERFLOWING
+   ========================================================= */
+
+.workspace-three-column > * {
+  min-width: 0;
+  min-height: 0;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+/* Smaller screens */
+
+@media (max-width: 1000px) {
+  .workspace-three-column {
+    grid-template-columns: 160px minmax(0, 1fr) 280px;
+  }
+
+  .elements-sidebar {
+    width: 160px;
+  }
+
+  .properties-sidebar {
+    width: 280px;
+    min-width: 280px;
+    max-width: 280px;
+    flex-basis: 280px;
+  }
+}
+
+
+/* Very small screens */
+
+@media (max-width: 800px) {
+  .workspace-three-column {
+    grid-template-columns: 140px minmax(0, 1fr) 260px;
+  }
+
+  .elements-sidebar {
+    width: 140px;
+  }
+
+  .properties-sidebar {
+    width: 260px;
+    min-width: 260px;
+    max-width: 260px;
+    flex-basis: 260px;
+  }
+}
+
+.section-divider {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-top: 6px;
+  margin-bottom: 2px;
+}
+
+.delete-action-container {
+  margin-top: 14px;
+  padding-top: 12px;
+  border-top: 1px solid var(--border-color);
+}
+
+.delete-el-btn {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  background-color: rgba(239, 68, 68, 0.1);
+  color: var(--accent-danger);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  padding: 8px;
+  border-radius: 6px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-el-btn:hover {
+  background-color: rgba(239, 68, 68, 0.2);
+  border-color: var(--accent-danger);
+}
+

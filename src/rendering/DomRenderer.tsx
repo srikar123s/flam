@@ -16,7 +16,7 @@ export const DomRenderer: React.FC<DomRendererProps> = ({
 }) => {
   return (
     <div
-      aria-label="Ad Layout Render Box"
+      aria-label="Ad Layout Render Box (DOM Read-Only)"
       style={{
         position: 'relative',
         width: `${layout.width}px`,
@@ -50,7 +50,6 @@ export const DomRenderer: React.FC<DomRendererProps> = ({
             zIndex: 99,
           }}
         >
-          {/* Safe Area Outer Shading */}
           <div
             style={{
               position: 'absolute',
@@ -181,7 +180,6 @@ export const DomRenderer: React.FC<DomRendererProps> = ({
                   fontWeight: 600,
                   border: 'none',
                   borderRadius: '6px',
-                  cursor: 'pointer',
                   boxShadow: '0 4px 12px rgba(99, 102, 241, 0.35)',
                   display: 'flex',
                   alignItems: 'center',
@@ -189,6 +187,7 @@ export const DomRenderer: React.FC<DomRendererProps> = ({
                   padding: '0 12px',
                   whiteSpace: 'nowrap',
                   overflow: 'hidden',
+                  pointerEvents: 'none',
                 }}
               >
                 {specEl.label}
