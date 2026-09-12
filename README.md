@@ -6,7 +6,6 @@
 
 A production-quality, framework-agnostic **TypeScript Constraint Resolution Engine** that takes a single declarative ad specification and dynamically adapts it across arbitrary display surfaces (Mobile Portrait, Mobile Landscape, Broadcast Lower Third, Square Retail Kiosk, and custom surfaces) using real geometric math, priority degradation, and candidate scoring.
 
-![Adaptive Layout Engine](https://raw.githubusercontent.com/flam-ad-tech/adaptive-engine/main/docs/preview.png)
 
 ---
 
