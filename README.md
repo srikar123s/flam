@@ -1,5 +1,9 @@
 # Adaptive Layout Engine for Multi-Surface Ads
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-Vercel-6366f1?style=for-the-badge&logo=vercel)](https://adaptive-layout-engine-lovat.vercel.app/)
+
+👉 **Live Demo**: [https://adaptive-layout-engine-lovat.vercel.app/](https://adaptive-layout-engine-lovat.vercel.app/)
+
 A production-quality, framework-agnostic **TypeScript Constraint Resolution Engine** that takes a single declarative ad specification and dynamically adapts it across arbitrary display surfaces (Mobile Portrait, Mobile Landscape, Broadcast Lower Third, Square Retail Kiosk, and custom surfaces) using real geometric math, priority degradation, and candidate scoring.
 
 ![Adaptive Layout Engine](https://raw.githubusercontent.com/flam-ad-tech/adaptive-engine/main/docs/preview.png)
